@@ -79,21 +79,21 @@ jobs:
           cd /var/www/worknai_v2
 
           # Write .env file
-          cat > .env <<EOF
+          cat > .env <<'EOF'
           MONGODB_URI=${{ secrets.MONGODB_URI }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           VITE_API_BASE_URL=https://api.worknai.com
           EOF
 
-          # Write docker-compose.yml using pre-built images
-          cat > docker-compose.yml <<EOF
+          # Write docker-compose.yml
+          cat > docker-compose.yml <<'EOF'
           version: '3.8'
           services:
             backend:
               image: ${{ secrets.DOCKER_USERNAME }}/worknai-backend:latest
-              container_name: worknai_backend
+              container_name: worknai_v2_backend
               ports:
-                - "5000:5000"
+                - "5001:5000"
               environment:
                 - NODE_ENV=production
                 - MONGODB_URI=${{ secrets.MONGODB_URI }}
@@ -101,43 +101,43 @@ jobs:
                 - PORT=5000
               restart: always
               networks:
-                - worknai_network
+                - worknai_v2_network
 
             frontend:
               image: ${{ secrets.DOCKER_USERNAME }}/worknai-frontend:latest
-              container_name: worknai_frontend
+              container_name: worknai_v2_frontend
               ports:
-                - "3000:3000"
+                - "3000:80"
               restart: always
               networks:
-                - worknai_network
+                - worknai_v2_network
               depends_on:
                 - backend
 
             admin:
               image: ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
-              container_name: worknai_admin
+              container_name: worknai_v2_admin
               ports:
-                - "3001:3001"
+                - "3001:80"
               restart: always
               networks:
-                - worknai_network
+                - worknai_v2_network
               depends_on:
                 - backend
 
             manager:
               image: ${{ secrets.DOCKER_USERNAME }}/worknai-manager:latest
-              container_name: worknai_manager
+              container_name: worknai_v2_manager
               ports:
-                - "3002:3002"
+                - "3002:80"
               restart: always
               networks:
-                - worknai_network
+                - worknai_v2_network
               depends_on:
                 - backend
 
           networks:
-            worknai_network:
+            worknai_v2_network:
               driver: bridge
           EOF
 
