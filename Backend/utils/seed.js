@@ -6,9 +6,9 @@ import User from '../models/userModel.js';
 dotenv.config();
 
 const users = [
-  { name: 'Admin',   email: 'admin@worknai.com',   password: 'Admin@123',   role: 'admin' },
-  { name: 'Manager', email: 'manager@worknai.com', password: 'Manager@123', role: 'manager' },
-  { name: 'HR',      email: 'hr@worknai.com',      password: 'Hr@123456',   role: 'hr' },
+  { name: 'Admin',   email: 'surajkurrey956@gmail.com', password: 'Suraj@2001',  role: 'admin' },
+  { name: 'Manager', email: 'manager@worknai.com',       password: 'Manager@123', role: 'manager' },
+  { name: 'HR',      email: 'hr@worknai.com',            password: 'Hr@123456',   role: 'hr' },
 ];
 
 const seedUsers = async () => {

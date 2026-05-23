@@ -24,7 +24,25 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    'https://worknai.online',
+    'https://www.worknai.online',
+    'https://worknai.com',
+    'https://www.worknai.com',
+    'https://worknai.in',
+    'https://www.worknai.in',
+    'https://admin.worknai.online',
+    'https://manager.worknai.online',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
+  ],
+  credentials: true,
+}));
+
 if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
 
 connectDB();
