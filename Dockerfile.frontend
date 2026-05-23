@@ -3,11 +3,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY frontend/package*.json ./
+COPY Frontend/package*.json ./
 
 RUN npm install
 
-COPY frontend/ .
+COPY Frontend/ .
 
 # Build with environment variable
 ARG VITE_API_BASE_URL
