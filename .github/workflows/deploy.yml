@@ -40,7 +40,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-frontend:latest
         build-args: |
-          VITE_API_BASE_URL=https://api.worknai.com
+          VITE_API_BASE_URL=https://api.worknai.online
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -52,7 +52,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
         build-args: |
-          VITE_API_BASE_URL=https://api.worknai.com
+          VITE_API_BASE_URL=https://api.worknai.online
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -64,7 +64,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-manager:latest
         build-args: |
-          VITE_API_BASE_URL=https://api.worknai.com
+          VITE_API_BASE_URL=https://api.worknai.online
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -79,9 +79,9 @@ jobs:
           cd /var/www/worknai_v2
 
           cat > .env <<EOF
-          MONGODB_URI=${{ secrets.MONGODB_URI }}
+          MONGO_URI=${{ secrets.MONGODB_URI }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
-          VITE_API_BASE_URL=https://api.worknai.com
+          VITE_API_BASE_URL=https://api.worknai.online
           EOF
 
           cat > docker-compose.yml <<EOF
@@ -92,9 +92,11 @@ jobs:
               container_name: worknai_v2_backend
               ports:
                 - "5001:5000"
+              env_file:
+                - /var/www/worknai_v2/.env
               environment:
                 - NODE_ENV=production
-                - MONGODB_URI=${{ secrets.MONGODB_URI }}
+                - MONGO_URI=${{ secrets.MONGODB_URI }}
                 - JWT_SECRET=${{ secrets.JWT_SECRET }}
                 - PORT=5000
               restart: always
@@ -116,7 +118,7 @@ jobs:
               image: ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
               container_name: worknai_v2_admin
               ports:
-                - "3001:80"
+                - "3003:80"
               restart: always
               networks:
                 - worknai_v2_network
