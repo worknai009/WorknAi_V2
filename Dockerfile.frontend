@@ -9,7 +9,6 @@ RUN npm install
 
 COPY Frontend/ .
 
-# Build with environment variable
 ARG VITE_API_BASE_URL
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
@@ -24,6 +23,6 @@ RUN npm install -g serve
 
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:3000"]
+CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:80"]
