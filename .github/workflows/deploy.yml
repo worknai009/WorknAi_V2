@@ -29,8 +29,7 @@ jobs:
         file: ./Dockerfile.backend
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-backend:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        no-cache: true
 
     - name: Build and push Frontend
       uses: docker/build-push-action@v4
@@ -39,10 +38,9 @@ jobs:
         file: ./Dockerfile.frontend
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-frontend:latest
+        no-cache: true
         build-args: |
           VITE_API_BASE_URL=https://api.worknai.online/api
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
 
     - name: Build and push Admin
       uses: docker/build-push-action@v4
@@ -51,10 +49,9 @@ jobs:
         file: ./Dockerfile.admin
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
+        no-cache: true
         build-args: |
           VITE_API_BASE_URL=https://api.worknai.online/api
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
 
     - name: Build and push Manager
       uses: docker/build-push-action@v4
@@ -63,10 +60,9 @@ jobs:
         file: ./Dockerfile.manager
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/worknai-manager:latest
+        no-cache: true
         build-args: |
           VITE_API_BASE_URL=https://api.worknai.online/api
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
 
     - name: Deploy to VPS
       uses: appleboy/ssh-action@master
