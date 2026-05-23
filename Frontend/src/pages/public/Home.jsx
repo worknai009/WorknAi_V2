@@ -10,7 +10,6 @@ import {
 import SectionHeader from '../../components/ui/SectionHeader';
 import api from '../../utils/api';
 import { formatPrice } from '../../utils/utils';
-import heroVideo from '../../assets/hero.mp4';
 import heroBg from '../../assets/hero.jpeg';
 
 const fadeUp = {
@@ -56,8 +55,8 @@ export default function Home() {
       <section className="relative flex min-h-[calc(100svh-65px)] items-center px-4 sm:px-6 py-10 md:py-16 overflow-hidden bg-[#06030f]">
         {/* Mobile: full bg video */}
         <div className="absolute inset-0 z-0 md:hidden overflow-hidden" aria-hidden="true">
-          <video className="h-full w-full object-cover object-center" autoPlay muted loop playsInline>
-            <source src={heroVideo} type="video/mp4" />
+          <video className="h-full w-full object-cover object-center" autoPlay muted loop playsInline preload="none">
+            <source src="https://res.cloudinary.com/dqmg9yp6r/video/upload/only-us/hero.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-[#06030f]/70" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#06030f]/40 via-transparent to-[#06030f]/80" />
@@ -65,8 +64,8 @@ export default function Home() {
 
         {/* Desktop: right side video */}
         <div className="absolute inset-y-0 right-0 z-0 hidden md:block w-[55%] overflow-hidden" aria-hidden="true">
-          <video className="h-full w-full object-cover object-center" autoPlay muted loop playsInline>
-            <source src={heroVideo} type="video/mp4" />
+          <video className="h-full w-full object-cover object-center" autoPlay muted loop playsInline preload="none">
+            <source src="https://res.cloudinary.com/dqmg9yp6r/video/upload/only-us/hero.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-[#06030f] via-transparent to-transparent" />
         </div>
