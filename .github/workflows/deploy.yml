@@ -78,74 +78,68 @@ jobs:
           mkdir -p /var/www/worknai_v2
           cd /var/www/worknai_v2
 
-          cat > .env <<EOF
-          MONGO_URI=${{ secrets.MONGODB_URI }}
-          JWT_SECRET=${{ secrets.JWT_SECRET }}
-          VITE_API_BASE_URL=https://api.worknai.online
-          EOF
-
-          cat > docker-compose.yml <<EOF
+          # Docker compose for frontend, admin, manager only
+          cat > docker-compose.yml <<'EOF'
           version: '3.8'
           services:
-            backend:
-              image: ${{ secrets.DOCKER_USERNAME }}/worknai-backend:latest
-              container_name: worknai_v2_backend
-              ports:
-                - "5001:5000"
-              env_file:
-                - /var/www/worknai_v2/.env
-              environment:
-                - NODE_ENV=production
-                - MONGO_URI=${{ secrets.MONGODB_URI }}
-                - JWT_SECRET=${{ secrets.JWT_SECRET }}
-                - PORT=5000
-              restart: always
-              networks:
-                - worknai_v2_network
-
             frontend:
-              image: ${{ secrets.DOCKER_USERNAME }}/worknai-frontend:latest
+              image: worknai009/worknai-frontend:latest
               container_name: worknai_v2_frontend
               ports:
                 - "3000:80"
               restart: always
               networks:
                 - worknai_v2_network
-              depends_on:
-                - backend
 
             admin:
-              image: ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
+              image: worknai009/worknai-admin:latest
               container_name: worknai_v2_admin
               ports:
                 - "3003:80"
               restart: always
               networks:
                 - worknai_v2_network
-              depends_on:
-                - backend
 
             manager:
-              image: ${{ secrets.DOCKER_USERNAME }}/worknai-manager:latest
+              image: worknai009/worknai-manager:latest
               container_name: worknai_v2_manager
               ports:
                 - "3002:80"
               restart: always
               networks:
                 - worknai_v2_network
-              depends_on:
-                - backend
 
           networks:
             worknai_v2_network:
               driver: bridge
           EOF
 
+          # Network create karo
+          docker network create worknai_v2_network || true
+
+          # Backend docker run se - MONGODB_URI directly pass karo
+          docker rm -f worknai_v2_backend || true
           docker pull ${{ secrets.DOCKER_USERNAME }}/worknai-backend:latest
+          docker run -d \
+            --name worknai_v2_backend \
+            --network worknai_v2_network \
+            -p 5001:5000 \
+            -e "MONGODB_URI=${{ secrets.MONGODB_URI }}" \
+            -e "JWT_SECRET=${{ secrets.JWT_SECRET }}" \
+            -e NODE_ENV=production \
+            -e PORT=5000 \
+            --restart always \
+            ${{ secrets.DOCKER_USERNAME }}/worknai-backend:latest
+
+          # Frontend, Admin, Manager pull and deploy
           docker pull ${{ secrets.DOCKER_USERNAME }}/worknai-frontend:latest
           docker pull ${{ secrets.DOCKER_USERNAME }}/worknai-admin:latest
           docker pull ${{ secrets.DOCKER_USERNAME }}/worknai-manager:latest
 
-          docker compose down
+          docker compose down || true
           docker compose up -d
+
+          # Verify
+          sleep 3
           docker compose ps
+          docker ps | grep backend
