@@ -36,28 +36,18 @@ const services = [
 ];
 
 const founders = [
-  {
-    name: 'Aman Salim Patel',
-    role: 'Co-Founder & Director',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop',
-  },
-  {
-    name: 'Sahil Salim Patel',
-    role: 'Co-Founder & Director',
-    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop',
-  },
+  { name: 'Aman Salim Patel', role: 'Co-Founder & Director' },
+  { name: 'Sahil Salim Patel', role: 'Co-Founder & Director' },
 ];
 
 const locations = [
   {
     name: 'Corporate Office — Punawale',
     address: 'Office No. 312, 3rd Floor, Sai Millennium, Pune-Mumbai Highway, Jeevan Nagar, Punawale, Pimpri-Chinchwad, Pune - 411033',
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop',
   },
   {
     name: 'Talwade Center',
     address: 'Sr No 199, Business Park, behind Jyotiba Mandir, Jyotiba Nagar, Talwade, Pimpri-Chinchwad, Pune - 411062',
-    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop',
   },
 ];
 
@@ -66,7 +56,7 @@ export default function About() {
     <div className="text-white">
 
       {/* Hero */}
-      <section className="relative min-h-[70vh] flex items-center justify-center px-6 text-center overflow-hidden">
+      <section className="relative min-h-[100vh] flex items-center justify-center px-6 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
@@ -212,13 +202,8 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 transition"
+                className="bg-white/5 border border-white/10 rounded-3xl hover:border-purple-500/50 transition"
               >
-                <img
-                  src={f.img}
-                  alt={f.name}
-                  className="w-full h-64 object-cover object-top"
-                />
                 <div className="p-6 text-center">
                   <h3 className="text-xl font-semibold">{f.name}</h3>
                   <p className="text-purple-400 text-sm mt-1">{f.role}</p>
@@ -247,13 +232,8 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 transition"
+                className="bg-white/5 border border-white/10 rounded-3xl hover:border-purple-500/50 transition"
               >
-                <img
-                  src={loc.img}
-                  alt={loc.name}
-                  className="w-full h-48 object-cover"
-                />
                 <div className="p-6">
                   <div className="flex items-start gap-3">
                     <MapPin className="text-purple-400 mt-1 shrink-0" size={20} />
