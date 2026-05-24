@@ -179,12 +179,7 @@ export default function Footer() {
             <Link to="/hr/login" className="hover:text-sky-300 transition-colors flex items-center gap-1">
               HR Login <ArrowUpRight className="w-3 h-3" />
             </Link>
-            <a href="http://localhost:5174/login" className="hover:text-violet-300 transition-colors flex items-center gap-1">
-              Admin Panel <ArrowUpRight className="w-3 h-3" />
-            </a>
-            <a href="http://localhost:5175/login" className="hover:text-emerald-300 transition-colors flex items-center gap-1">
-              Manager Panel <ArrowUpRight className="w-3 h-3" />
-            </a>
+           
             <span className="font-mono">v1.0.0 · built with ❤ in Pune</span>
           </div>
         </div>
