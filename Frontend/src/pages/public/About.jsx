@@ -189,7 +189,7 @@ export default function About() {
       </section>
 
       {/* Founders */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
             Meet Our <span className="text-purple-400">Founders</span>
@@ -202,16 +202,18 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-3xl hover:border-purple-500/50 transition"
+                className="relative group bg-gradient-to-br from-purple-900/30 to-slate-900/60 border border-purple-500/20 rounded-3xl p-8 text-center hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
               >
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold">{f.name}</h3>
-                  <p className="text-purple-400 text-sm mt-1">{f.role}</p>
-                  <p className="text-slate-400 text-sm mt-3">
-                    Co-founder of WorknAi Technologies India Pvt Ltd, driving innovation
-                    in IT education and enterprise software solutions from Pune.
-                  </p>
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center mx-auto mb-5 text-2xl font-bold text-white shadow-lg shadow-purple-500/30">
+                  {f.name.charAt(0)}
                 </div>
+                <h3 className="text-xl font-bold text-white">{f.name}</h3>
+                <p className="text-purple-400 text-sm font-medium mt-1 mb-4">{f.role}</p>
+                <div className="w-12 h-0.5 bg-purple-500/40 mx-auto mb-4" />
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Co-founder of WorknAi Technologies India Pvt Ltd, driving innovation
+                  in IT education and enterprise software solutions from Pune.
+                </p>
               </motion.div>
             ))}
           </div>
@@ -219,7 +221,7 @@ export default function About() {
       </section>
 
       {/* Locations */}
-      <section className="py-16 px-6 bg-white/5">
+      <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
             Our <span className="text-purple-400">Locations</span>
@@ -232,17 +234,13 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-3xl hover:border-purple-500/50 transition"
+                className="bg-gradient-to-br from-purple-900/20 to-slate-900/60 border border-purple-500/20 rounded-3xl p-8 hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
               >
-                <div className="p-6">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-purple-400 mt-1 shrink-0" size={20} />
-                    <div>
-                      <h3 className="font-semibold text-lg">{loc.name}</h3>
-                      <p className="text-slate-400 text-sm mt-1">{loc.address}</p>
-                    </div>
-                  </div>
+                <div className="w-12 h-12 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center mb-5">
+                  <MapPin className="text-purple-400" size={22} />
                 </div>
+                <h3 className="font-bold text-lg text-white mb-2">{loc.name}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{loc.address}</p>
               </motion.div>
             ))}
           </div>
