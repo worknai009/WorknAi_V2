@@ -66,14 +66,14 @@ export default function About() {
     <div className="text-white">
 
       {/* Hero */}
-      <section className="relative py-24 px-6 text-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center justify-center px-6 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
             alt="team"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover object-center opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#06030f]" />
         </div>
         <div className="relative z-10">
           <motion.div
