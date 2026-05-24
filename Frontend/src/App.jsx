@@ -80,10 +80,6 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/join-us" element={<JoinUs />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
 
           {/* User protected routes */}
           <Route
@@ -97,6 +93,12 @@ export default function App() {
 
           <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* Auth pages — no navbar/footer */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* ============ HR PANEL ============ */}
         <Route path="/hr/login" element={<HRLogin />} />
